@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  appmvcavancado:
+    image: ${DOCKER_REGISTRY-}appmvcavancado
+    build:
+      context: .
+      dockerfile: src/Dev.IO.App/Dockerfile

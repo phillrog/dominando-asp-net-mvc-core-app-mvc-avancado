@@ -27,7 +27,5 @@ namespace DevIO.Data.Mappings
 
 			builder.ToTable("Fornecedores");
 		}
-	}
-	{
-	}
+	}	
 }

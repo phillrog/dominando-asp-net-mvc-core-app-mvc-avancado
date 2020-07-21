@@ -8,7 +8,7 @@ namespace DevIO.Data.Contexts
 {
 	public class MeuDbCOntext : DbContext
 	{
-		public MeuDbCOntext(DbContextOptions options) : base(options)
+		public MeuDbCOntext(DbContextOptions<MeuDbCOntext> options) : base(options)
 		{
 
 		}

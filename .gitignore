@@ -7,3 +7,8 @@
 /src/DevIO.Business/obj
 /src/DevIO.Data/obj
 /src/DevIO.Data/bin/Debug/netcoreapp3.1
+/obj
+/bin/Debug
+/src/Dev.IO.App/bin
+/src/DevIO.Business/bin
+/src/DevIO.Data/bin/Release/netcoreapp3.1
