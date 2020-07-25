@@ -6,9 +6,9 @@ using System.Linq;
 
 namespace DevIO.Data.Contexts
 {
-	public class MeuDbCOntext : DbContext
+	public class MeuDbContext : DbContext
 	{
-		public MeuDbCOntext(DbContextOptions<MeuDbCOntext> options) : base(options)
+		public MeuDbContext(DbContextOptions<MeuDbContext> options) : base(options)
 		{
 
 		}
@@ -24,7 +24,7 @@ namespace DevIO.Data.Contexts
 				property.SetColumnType("varchar(100)");
 			}
 
-			modelBuilder.ApplyConfigurationsFromAssembly(typeof(MeuDbCOntext).Assembly);
+			modelBuilder.ApplyConfigurationsFromAssembly(typeof(MeuDbContext).Assembly);
 
 			foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
 			{

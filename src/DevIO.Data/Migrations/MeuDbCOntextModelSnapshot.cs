@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DevIO.Data.Migrations
 {
-    [DbContext(typeof(MeuDbCOntext))]
+    [DbContext(typeof(MeuDbContext))]
     partial class MeuDbCOntextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
