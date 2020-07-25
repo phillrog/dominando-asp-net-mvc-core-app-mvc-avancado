@@ -29,6 +29,7 @@ namespace DevIO.Data.Repositories
 
 		public virtual async Task Atualizar(TEntity entity)
 		{
+			Db.Entry<TEntity>(entity).State = EntityState.Modified;
 			DbSet.Update(entity);
 			await SaveChanges();
 		}
@@ -45,7 +46,7 @@ namespace DevIO.Data.Repositories
 
 		public virtual async Task<TEntity> ObterPorId(Guid id)
 		{
-			return await DbSet.FindAsync(id);
+			return await DbSet.AsNoTracking().FirstOrDefaultAsync(e => e.Id == id);
 		}
 
 		public virtual async Task<List<TEntity>> ObterTodos()

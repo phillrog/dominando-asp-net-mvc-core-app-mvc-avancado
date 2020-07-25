@@ -115,9 +115,27 @@ namespace Dev.IO.App.Controllers
 		{
 			if (id != produtoViewModel.Id) return NotFound();
 
+			var produtoAtualizacao = await ObeterProduto(id);
+			produtoViewModel.Fornecedor = produtoAtualizacao.Fornecedor;
+			produtoViewModel.Imagem = produtoAtualizacao.Imagem;
+
 			if (!ModelState.IsValid) return View(produtoViewModel);
 
-			_produtoRepository.Atualizar(_mapper.Map<Produto>(produtoViewModel));
+			if (produtoViewModel.ImagemUpload != null)
+			{
+				var imgPrefixo = Guid.NewGuid() + "_";
+
+				if (!await UploadArquivo(produtoViewModel.ImagemUpload, imgPrefixo)) return View(produtoViewModel);
+
+				produtoAtualizacao.Imagem = imgPrefixo + produtoViewModel.ImagemUpload.FileName;
+			}
+
+			produtoAtualizacao.Nome = produtoViewModel.Nome;
+			produtoAtualizacao.Descricao = produtoViewModel.Descricao;
+			produtoAtualizacao.Ativo = produtoViewModel.Ativo;
+			produtoAtualizacao.Valor = produtoViewModel.Valor;
+			
+			await _produtoRepository.Atualizar(_mapper.Map<Produto>(produtoAtualizacao));
 
 			return RedirectToAction("Index");
 		}
@@ -152,6 +170,7 @@ namespace Dev.IO.App.Controllers
 		{
 			var produto = _mapper.Map<ProdutoViewModel>(await _produtoRepository.ObterProdutoFornecedor(id));
 			produto.Fornecedores = _mapper.Map<IEnumerable<FornecedorViewModel>>(await _fornecedorRepository.ObterTodos());
+
 			return produto;
 		}
 
