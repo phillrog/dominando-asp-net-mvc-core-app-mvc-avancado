@@ -16,6 +16,7 @@ using DevIO.Data.Contexts;
 using Microsoft.AspNetCore.Mvc;
 using DevIO.Business.Interfaces;
 using DevIO.Data.Repositories;
+using AutoMapper;
 
 namespace Dev.IO.App
 {
@@ -41,6 +42,9 @@ namespace Dev.IO.App
 
 			services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
 				.AddEntityFrameworkStores<ApplicationDbContext>();
+
+			services.AddAutoMapper(typeof(Startup));
+
 			services.AddControllersWithViews();
 
 			services.AddRazorPages();
