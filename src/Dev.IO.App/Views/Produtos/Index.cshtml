@@ -40,10 +40,10 @@
 					@Html.DisplayFor(modelItem => item.Nome)
 				</td>
 				<td>
-					@Html.DisplayFor(modelItem => item.Fornecedor.Nome)
+					Fornecedor
 				</td>
 				<td>
-					@Html.DisplayFor(modelItem => item.Valor)
+					@item.Valor.ToString("C")
 				</td>
 				<td>
 					@Html.DisplayFor(modelItem => item.Ativo)

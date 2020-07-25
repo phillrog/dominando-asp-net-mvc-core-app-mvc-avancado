@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Dev.IO.App.Extensions;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -30,6 +31,7 @@ namespace Dev.IO.App.ViewModels
 		public string Imagem { get; set; }
 
 		[Required(ErrorMessage = "O campo {0} é obrigatório")]
+		[Moeda]
 		public decimal Valor { get; set; } = 0;
 
 		[ScaffoldColumn(false)]
