@@ -17,7 +17,7 @@ namespace Dev.IO.App.ViewModels
 		public string Logradouro { get; set; }
 
 		[Required(ErrorMessage = "O campo {0} é obrigatório")]
-		[StringLength(50, ErrorMessage = "O campo {0} precisa ter entre {2} e {1} caracteres", MinimumLength = 10)]
+		[StringLength(50, ErrorMessage = "O campo {0} precisa ter entre {2} e {1} caracteres", MinimumLength = 1)]
 		public string Numero { get; set; }
 
 		public string Complemento { get; set; }
@@ -37,6 +37,9 @@ namespace Dev.IO.App.ViewModels
 		[Required(ErrorMessage = "O campo {0} é obrigatório")]
 		[StringLength(50, ErrorMessage = "O campo {0} precisa ter entre {2} e {1} caracteres", MinimumLength = 2)]
 		public string Estado { get; set; }
+
+		
+		public FornecedorViewModel Fornecedor { get; set; }
 
 		[HiddenInput]
 		public Guid FornecedorId { get; set; }
