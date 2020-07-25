@@ -4,10 +4,10 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1>Detalhes do Fornecedor</h1>
 
 <div>
-    <h4>FornecedorViewModel</h4>
+    <h4>nformações apenas para leitura</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -20,7 +20,7 @@
             @Html.DisplayNameFor(model => model.Documento)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Documento)
+            @this.FormataDocumento(Model.TipoFornecedor,Model.Documento)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.TipoFornecedor)
@@ -36,7 +36,10 @@
         </dd>
     </dl>
 </div>
+
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a class="btn btn-primary"  asp-action="Edit" asp-route-id="@Model.Id">Editar</a>
+    <a class="btn btn-info"  asp-action="Index">Back to List</a>
 </div>
+
+<partial name="_DetalhesEndereco" />

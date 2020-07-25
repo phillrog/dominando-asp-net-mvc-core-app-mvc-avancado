@@ -55,7 +55,7 @@ namespace Dev.IO.App.Controllers
 		// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> Create([Bind("Id,Nome,Documento,TipoFornecedor,Ativo")] FornecedorViewModel fornecedorViewModel)
+		public async Task<IActionResult> Create(FornecedorViewModel fornecedorViewModel)
 		{
 			if (!ModelState.IsValid) return View(fornecedorViewModel);
 
