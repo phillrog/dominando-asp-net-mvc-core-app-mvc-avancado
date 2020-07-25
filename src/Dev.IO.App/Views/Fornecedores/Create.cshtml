@@ -1,14 +1,14 @@
 ﻿@model Dev.IO.App.ViewModels.FornecedorViewModel
 
 @{
-    ViewData["Title"] = "Novo Fornecedor";
+	ViewData["Title"] = "Novo Fornecedor";
 }
 
-	<h1>@ViewData["Title"]</h1>
+<h1>@ViewData["Title"]</h1>
 
 <hr />
 <div class="row">
-    <div class="col-md-10">
+	<div class="col-md-10">
 		<form asp-action="Create">
 			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 			<div class="form-group">
@@ -33,7 +33,7 @@
 				</label>
 			</div>
 			<h4>Endereço</h4>
-			<br/>
+			<br />
 
 			<partial name="_Endereco" />
 
@@ -42,10 +42,14 @@
 				<a class="btn btn-info" asp-action="Index">Voltar</a>
 			</div>
 		</form>
-    </div>
+	</div>
 </div>
 
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+	@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+	<script>
+		BuscaCep();
+	</script>
 }
