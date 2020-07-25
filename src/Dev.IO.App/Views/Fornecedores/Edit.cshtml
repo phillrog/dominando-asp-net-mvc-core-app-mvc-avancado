@@ -42,7 +42,7 @@
 </form>
 
 
-<div>
+<div id="EnderecoTarget">
 	<partial name="_DetalhesEndereco" />
 </div>
 
@@ -50,6 +50,20 @@
 	<partial name="../Produtos/_ListaProdutos" model="@Model.Produtos" />
 </div>
 
+<div id="myModal" class="modal fade in">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div id="myModalContent"></div>
+		</div>
+	</div>
+</div>
+
 @section Scripts {
 	@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+	<script>
+		$(document).ready(function () {
+			AjaxModal();
+		});
+	</script>
 }
