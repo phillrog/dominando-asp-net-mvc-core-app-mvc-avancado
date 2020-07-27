@@ -18,16 +18,20 @@ namespace Dev.IO.App.Controllers
 	public class ProdutosController : BaseController
 	{
 		private readonly IProdutoRepository _produtoRepository;
+		private readonly IProdutoService _produtoService;
 		private readonly IFornecedorRepository _fornecedorRepository;
 		private readonly IMapper _mapper;
 
-		public ProdutosController(IProdutoRepository produtoRepository,
+		public ProdutosController(IProdutoService produtoService,
 			IFornecedorRepository fornecedorRepository,
-			IMapper mapper)
+			IProdutoRepository produtoRepository,
+			IMapper mapper,
+			INotificador notificador) : base(notificador)
 		{
-			_produtoRepository = produtoRepository;
+			_produtoService = produtoService;
 			_mapper = mapper;
 			_fornecedorRepository = fornecedorRepository;
+			_produtoRepository = produtoRepository;
 		}
 
 		// GET: Produtos
@@ -75,7 +79,9 @@ namespace Dev.IO.App.Controllers
 
 			produtoViewModel.Imagem = imgPrefixo + produtoViewModel.ImagemUpload.FileName;
 
-			_produtoRepository.Adicionar(_mapper.Map<Produto>(produtoViewModel));
+			_produtoService.Adicionar(_mapper.Map<Produto>(produtoViewModel));
+			
+			if (!OperacaoValida()) return View(produtoViewModel);
 
 			return RedirectToAction("Index");
 		}
@@ -141,7 +147,9 @@ namespace Dev.IO.App.Controllers
 			produtoAtualizacao.Ativo = produtoViewModel.Ativo;
 			produtoAtualizacao.Valor = produtoViewModel.Valor;
 			
-			await _produtoRepository.Atualizar(_mapper.Map<Produto>(produtoAtualizacao));
+			await _produtoService.Atualizar(_mapper.Map<Produto>(produtoAtualizacao));
+
+			if (!OperacaoValida()) return View(produtoViewModel);
 
 			return RedirectToAction("Index");
 		}
@@ -169,7 +177,11 @@ namespace Dev.IO.App.Controllers
 
 			if (produtoViewModel == null) return NotFound();
 
-			await _produtoRepository.Remover(id);
+			await _produtoService.Remover(id);
+
+			if (!OperacaoValida()) return View(produtoViewModel);
+
+			TempData["Sucesso"] = "Produto excluido com sucesso!"; 
 
 			return RedirectToAction(nameof(Index));
 		}

@@ -1,5 +1,7 @@
 ﻿using Dev.IO.App.Extensions;
 using DevIO.Business.Interfaces;
+using DevIO.Business.Notifications;
+using DevIO.Business.Services;
 using DevIO.Data.Contexts;
 using DevIO.Data.Repositories;
 using Microsoft.AspNetCore.Mvc.DataAnnotations;
@@ -16,6 +18,10 @@ namespace Dev.IO.App.Configurations
 			services.AddScoped<IEnderecoRepository, EnderecoRepository>();
 			services.AddScoped<IFornecedorRepository, FornecedorRepository>();
 			services.AddSingleton<IValidationAttributeAdapterProvider, MoedaValidationAttributeAdapterProvider>();
+
+			services.AddScoped<INotificador, Notificador>();
+			services.AddScoped<IFornecedorService, FornecedorService>();
+			services.AddScoped<IProdutoService, ProdutoService>();
 
 			return services;
 		}
