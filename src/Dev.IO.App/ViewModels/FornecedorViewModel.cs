@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -27,7 +28,7 @@ namespace Dev.IO.App.ViewModels
 
 		[DisplayName("Ativo?")]
 		public bool Ativo { get; set; }
-
+		[NotMapped]
 		public IEnumerable<ProdutoViewModel> Produtos { get; set; }
 	}
 }

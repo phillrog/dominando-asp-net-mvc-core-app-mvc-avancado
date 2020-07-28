@@ -12,9 +12,12 @@ using AutoMapper;
 using DevIO.Business.Models;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using Microsoft.AspNetCore.Authorization;
+using Dev.IO.App.Extensions.Seguranca;
 
 namespace Dev.IO.App.Controllers
 {
+	[Authorize]
 	public class ProdutosController : BaseController
 	{
 		private readonly IProdutoRepository _produtoRepository;
@@ -35,6 +38,7 @@ namespace Dev.IO.App.Controllers
 		}
 
 		// GET: Produtos
+		[AllowAnonymous]
 		[Route("lista-de-produtos")]
 		public async Task<IActionResult> Index()
 		{
@@ -42,6 +46,7 @@ namespace Dev.IO.App.Controllers
 		}
 
 		// GET: Produtos/Details/5
+		[AllowAnonymous]
 		[Route("dados-do-produto/{id:guid}")]
 		public async Task<IActionResult> Details(Guid id)
 		{
@@ -53,6 +58,7 @@ namespace Dev.IO.App.Controllers
 		}
 
 		// GET: Produtos/Create
+		[ClaimsAuthorize("Produto","Adicionar")]
 		[Route("novo-produto")]
 		public async Task<IActionResult> Create()
 		{
@@ -64,6 +70,7 @@ namespace Dev.IO.App.Controllers
 		// POST: Produtos/Create
 		// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
 		// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+		[ClaimsAuthorize("Produtos", "Adicionar")]
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		[Route("novo-produto")]
@@ -107,6 +114,7 @@ namespace Dev.IO.App.Controllers
 		}
 
 		// GET: Produtos/Edit/5
+		[ClaimsAuthorize("Produto", "Editar")]
 		[Route("editar-produto/{id:guid}")]
 		public async Task<IActionResult> Edit(Guid id)
 		{
@@ -120,6 +128,7 @@ namespace Dev.IO.App.Controllers
 		// POST: Produtos/Edit/5
 		// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
 		// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+		[ClaimsAuthorize("Produto", "Editar")]
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		[Route("editar-produto/{id:guid}")]
@@ -155,6 +164,7 @@ namespace Dev.IO.App.Controllers
 		}
 
 		// GET: Produtos/Delete/5
+		[ClaimsAuthorize("Produto", "Excluir")]
 		[Route("excluir-produto/{id:guid}")]
 		public async Task<IActionResult> Delete(Guid id)
 		{
@@ -168,6 +178,7 @@ namespace Dev.IO.App.Controllers
 		}
 
 		// POST: Produtos/Delete/5
+		[ClaimsAuthorize("Produto", "Excluir")]
 		[HttpPost, ActionName("Delete")]
 		[ValidateAntiForgeryToken]
 		[Route("excluir-produto/{id:guid}")]

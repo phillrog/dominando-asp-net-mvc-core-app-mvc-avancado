@@ -40,8 +40,8 @@
             </td>
             <td class="text-right">
                 <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id"><span title="Editar" class="fa fa-search"></span></a>
-                <a class="btn btn-info" asp-action="Details" asp-route-id="@item.Id"><span title="Detalhes" class="fa fa-pen-alt"></span></a>
-                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id"><span title="Excluir" class="fa fa-trash"></span></a>
+                <a class="btn btn-info"  disable-by-claim-name="Fornecedor" disable-by-claim-value="Editar" asp-action="Details" asp-route-id="@item.Id"><span title="Detalhes" class="fa fa-pen-alt"></span></a>
+                <a class="btn btn-danger" supress-by-claim-name="Fornecedor" supress-by-claim-value="Excluir" asp-action="Delete" asp-route-id="@item.Id"><span title="Excluir" class="fa fa-trash"></span></a>
             </td>
         </tr>
 }
