@@ -72,7 +72,6 @@ namespace Dev.IO.App.Controllers
 		// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
 		[ClaimsAuthorize("Produtos", "Adicionar")]
 		[HttpPost]
-		[ValidateAntiForgeryToken]
 		[Route("novo-produto")]
 		public async Task<IActionResult> Create(ProdutoViewModel produtoViewModel)
 		{
@@ -130,7 +129,6 @@ namespace Dev.IO.App.Controllers
 		// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
 		[ClaimsAuthorize("Produto", "Editar")]
 		[HttpPost]
-		[ValidateAntiForgeryToken]
 		[Route("editar-produto/{id:guid}")]
 		public async Task<IActionResult> Edit(Guid id, ProdutoViewModel produtoViewModel)
 		{
@@ -180,7 +178,6 @@ namespace Dev.IO.App.Controllers
 		// POST: Produtos/Delete/5
 		[ClaimsAuthorize("Produto", "Excluir")]
 		[HttpPost, ActionName("Delete")]
-		[ValidateAntiForgeryToken]
 		[Route("excluir-produto/{id:guid}")]
 		public async Task<IActionResult> DeleteConfirmed(Guid id)
 		{

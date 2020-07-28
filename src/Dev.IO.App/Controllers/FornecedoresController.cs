@@ -67,8 +67,7 @@ namespace Dev.IO.App.Controllers
 		// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
 		// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
 		[ClaimsAuthorize("Fornecedor", "Adicionar")]
-		[HttpPost]
-		[ValidateAntiForgeryToken]
+		[HttpPost]		
 		[Route("novo-fornecedor")]
 		public async Task<IActionResult> Create(FornecedorViewModel fornecedorViewModel)
 		{
@@ -101,7 +100,6 @@ namespace Dev.IO.App.Controllers
 		// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
 		[ClaimsAuthorize("Fornecedor", "Editar")]
 		[HttpPost]
-		[ValidateAntiForgeryToken]
 		[Route("editar-fornecedor/{id:guid}")]
 		public async Task<IActionResult> Edit(Guid id, FornecedorViewModel fornecedorViewModel)
 		{
@@ -133,7 +131,6 @@ namespace Dev.IO.App.Controllers
 		// POST: Fornecedores/Delete/5
 		[ClaimsAuthorize("Fornecedor", "Excluir")]
 		[HttpPost, ActionName("Delete")]
-		[ValidateAntiForgeryToken]
 		[Route("excluir-fornecedor/{id:guid}")]
 		public async Task<IActionResult> DeleteConfirmed(Guid id)
 		{
@@ -173,7 +170,6 @@ namespace Dev.IO.App.Controllers
 		}
 
 		[HttpPost]
-		[ValidateAntiForgeryToken]
 		[Route("atualizar-endereco-fornecedor/{id:guid}")]
 		public async Task<IActionResult> AtualizarEndereco(FornecedorViewModel fornecedorViewModel)
 		{
